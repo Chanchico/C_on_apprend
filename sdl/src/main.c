@@ -22,6 +22,24 @@ int main(int argc, char **argv){
 
 	//Execution du programme
 	/*_____________________________________________________________*/
+	if(SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE) != 0)
+		SDL_ExitWithError("Unable to change the render color");
+	
+	if(SDL_RenderDrawPoint(renderer, 155, 455) != 0)
+		SDL_ExitWithError("Unable to print the point");
+
+	if(SDL_RenderDrawLine(renderer, 50, 50, 50, 300))
+		SDL_ExitWithError("Unable to print the line");
+
+	SDL_Rect rectangle;
+	rectangle.x = 300;
+	rectangle.y = 300;
+	rectangle.w = 100;
+	rectangle.h = 50;
+
+	if(SDL_RenderDrawRect(renderer, &rectangle) != 0)
+		SDL_ExitWithError("Unable to print the rectangle");
+
 	SDL_RenderPresent(renderer);
 	SDL_Delay(3000);
 	/*_____________________________________________________________*/
