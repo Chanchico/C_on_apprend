@@ -12,28 +12,17 @@ int main(int argc, char **argv){
 	SDL_Renderer *renderer = NULL;
 	
 	///lancement SDL
-	if(SDL_Init(SDL_INIT_VIDEO) != 0){
+	if(SDL_Init(SDL_INIT_VIDEO) != 0)
 		SDL_ExitWithError("Init SDL");
-		exit(EXIT_FAILURE);
-	}
 
-	//Création de fenetre 
+	//Création de fenetre et rendu
+	if(SDL_CreateWindowAndRenderer(800, 600, 0, &window, &renderer) != 0)
+		SDL_ExitWithError("Unable to create the windows and the render");
 	
-	window = SDL_CreateWindow("Premier Fenêtre SDL2", 100, 100, 800, 600, 0);
-	if(window == NULL ){
-		SDL_ExitWithError("Create Window failed");
-	}
 
 	//Execution du programme
 	/*_____________________________________________________________*/
-	//Creation du rendu 
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-	if (renderer == NULL){
-		SDL_ExitWithError("Creating renderer");
-	}
-
 	SDL_RenderPresent(renderer);
-	
 	SDL_Delay(3000);
 	/*_____________________________________________________________*/
 
