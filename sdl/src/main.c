@@ -28,15 +28,11 @@ int main(int argc, char **argv){
 		SDL_Event event;
 
 		while(SDL_PollEvent(&event)){
+
 			switch(event.type){
-				case SDL_KEYDOWN:
-					switch(event.key.keysym.sym){
-						case SDLK_b:
-							printf("Vous avez appuyer sur B\n");
-							continue;
-						default:
-							continue;
-					}
+				case SDL_MOUSEMOTION:
+					printf("%d / %d\n", event.motion.x, event.motion.y);
+					break;
 				case SDL_QUIT:
 					program_launched = SDL_FALSE;
 					break;
