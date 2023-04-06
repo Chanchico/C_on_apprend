@@ -24,15 +24,24 @@ int main(int argc, char **argv){
 	//Execution du programme
 	/*_____________________________________________________________*/
 	SDL_bool program_launched = SDL_TRUE;
+	unsigned int frame_limit = 0;
+
+	/*
+		1000 / 30 = 33
+		1000 / 60 = 16
+
+	*/
+	//Pour 60 fps
+	frame_limit = SDL_GetTicks() + FPS_LIMIT;
+	SDL_LimitFps(frame_limit);
+	frame_limit = SDL_GetTicks() + FPS_LIMIT;
+
 	while(program_launched){
 		SDL_Event event;
 
 		while(SDL_PollEvent(&event)){
 
 			switch(event.type){
-				case SDL_MOUSEMOTION:
-					printf("%d / %d\n", event.motion.x, event.motion.y);
-					break;
 				case SDL_QUIT:
 					program_launched = SDL_FALSE;
 					break;
@@ -59,4 +68,14 @@ void SDL_ExitWithError(const char *message){
 void SDL_ClearMemory(SDL_Window *window, SDL_Renderer *renderer ){
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+}
+
+void SDL_LimitFps(unsigned int limit){
+	unsigned int ticks = SDL_GetTicks();
+	if(limit < ticks)
+		return;
+	else if( limit > ticks + FPS_LIMIT)
+		SDL_Delay(FPS_LIMIT);
+	else
+		SDL_Delay(limit);
 }

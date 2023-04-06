@@ -11,7 +11,7 @@ if not exist %filename% (
 if "%target%"=="" (
   set target=%~n1
 )
-gcc %filename% -o %target%.exe -I include -L lib -lmingw32 -lSDL2main -lSDL2
+gcc -Wall -Wextra -Werror %filename% -o %target%.exe -I include -L lib -lmingw32 -lSDL2main -lSDL2
 if not exist %target%.exe (
   echo Compilation failed.
   exit /b 1
