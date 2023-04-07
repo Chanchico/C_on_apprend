@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <SDL.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #endif
 
@@ -24,8 +25,16 @@ typedef struct Cell{
 	int y_coor;
 } Cell;
 
-int cellToAlive(Cell *cell, Cell cells[][LEN]);
+void initCellsTbm(Cell ***cells,int lenght, int height);
 
-struct Cell *getCell(int x_coor, int y_coor, Cell cells[][LEN]);
+void freeCellsTbm(Cell **cells, int height);
 
-void printCell(Cell cells[][LEN]);
+void printCell(Cell **cells, int lenght, int height);
+
+int cellToAlive(Cell *cell, Cell **cells);
+
+bool haveCellAlive(Cell **cells, int lenght, int height);
+
+void addCellToInto(Cell *cell, Cell **cellsPointer, int *numCellPointer);
+
+void changeState(Cell **cells, int *sizeCells);

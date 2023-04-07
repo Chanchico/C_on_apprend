@@ -1,4 +1,5 @@
 @echo off
+del bin\*.exe
 cls
 set dirbin=bin
 set filename=%1
