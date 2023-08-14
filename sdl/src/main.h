@@ -1,16 +1,23 @@
-#ifndef MAIN
-#define MAIN
-
 #include <stdio.h>
-#include <SDL.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <windows.h>
+#include <SDL.h>
 
-void SDL_ExitWithError(const char *message);
-void SDL_ClearMemory(SDL_Window *window, SDL_Renderer *renderer);
-void SDL_LimitFps(unsigned int limit);
+struct Cell {
+    SDL_Rect rect;
+    int state;
+};
 
-#endif
+int fn_SDL();
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 426
-#define FPS_LIMIT 16
+int sdlGame();
+
+void print2DArray(struct Cell ** board, int cote);
+char ** generateBoard(int cote);
+int havelife(struct Cell **board, int cote);
+struct Cell **newGen(struct Cell **board, int cote);
+void game();
+struct Cell ** generateRects(int cote);
+
+
